@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import {} from 'vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
