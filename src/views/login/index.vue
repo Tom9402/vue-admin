@@ -6,26 +6,14 @@
       </div>
 
       <el-form-item prop="username">
-        <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
-        </span>
+        <svg-icon icon="user" />
         <el-input placeholder="username" name="username" type="text" />
       </el-form-item>
 
       <el-form-item prop="password">
-        <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
-        </span>
+        <svg-icon icon="password" />
         <el-input placeholder="password" name="password" />
-        <span class="show-pwd">
-          <el-icon>
-            <avatar />
-          </el-icon>
-        </span>
+        <svg-icon icon="eye" />
       </el-form-item>
 
       <el-button type="primary" style="width: 100%; margin-bottom: 30px">登录</el-button>
@@ -33,9 +21,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import SvgIcon from '@/components/SvgIcon/index.vue'
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
@@ -77,7 +63,6 @@ $cursor: #fff;
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
-        padding: 12px 5px 12px 15px;
         color: $light_gray;
         height: 47px;
         caret-color: $cursor;
@@ -85,11 +70,8 @@ $cursor: #fff;
     }
   }
 
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    display: inline-block;
+  .svg-icon {
+    margin-left: 10px;
   }
 
   .title-container {

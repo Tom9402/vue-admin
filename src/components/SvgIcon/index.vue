@@ -4,7 +4,7 @@
     class="svg-external-icon svg-icon"
     :class="className"
     :style="styleExternalIcon"
-  ></div>
+  />
   <svg v-else class="svg-icon" :class="className" aria-hidden="true">
     <use :xlink:href="iconName" />
   </svg>
