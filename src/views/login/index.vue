@@ -1,19 +1,26 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFromRef">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFromRef">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
 
       <el-form-item prop="username">
         <svg-icon icon="user" />
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input v-model="loginForm.username" placeholder="username" name="username" type="text" />
       </el-form-item>
 
       <el-form-item prop="password">
         <svg-icon icon="password" />
-        <el-input placeholder="password" name="password" />
-        <svg-icon icon="eye" />
+        <el-input
+          v-model="loginForm.password"
+          :type="pwdType"
+          placeholder="password"
+          name="password"
+        />
+        <span class="show-pwd">
+          <svg-icon :icon="pwdType === 'password' ? 'eye' : 'eye-open'" @click="onChangePwdType" />
+        </span>
       </el-form-item>
 
       <el-button type="primary" style="width: 100%; margin-bottom: 30px">登录</el-button>
@@ -21,7 +28,39 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { validatePwd } from './rules'
+
+const pwdType = ref('password')
+
+const loginForm = ref({ username: 'super-admin', password: '123456' })
+
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '此项必填',
+    },
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePwd(),
+    },
+  ],
+})
+
+const onChangePwdType = () => {
+  if (pwdType.value === 'password') {
+    pwdType.value = 'text'
+  } else {
+    pwdType.value = 'password'
+  }
+}
+</script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
 $dark_gray: #889aa4;

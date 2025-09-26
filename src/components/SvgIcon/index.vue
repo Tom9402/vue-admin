@@ -26,11 +26,13 @@ const props = defineProps({
 })
 const isExternal = computed(() => external(props.icon))
 
+// 外部图表样式
 const styleExternalIcon = computed(() => ({
   mask: `url(${props.icon}) no-repeat 50% 50%`,
   '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`,
 }))
 
+// 项目内图标
 const iconName = computed(() => `#icon-${props.icon}`)
 </script>
 
