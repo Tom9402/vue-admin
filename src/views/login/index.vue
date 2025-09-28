@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFromRef">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFormRef">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -23,7 +23,9 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px">登录</el-button>
+      <el-button type="primary" style="width: 100%; margin-bottom: 30px" @click="handleLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
@@ -31,6 +33,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { validatePwd } from './rules'
+import { useLoginStore } from '@/stores/user'
 
 const pwdType = ref('password')
 
@@ -60,7 +63,23 @@ const onChangePwdType = () => {
     pwdType.value = 'password'
   }
 }
+
+const loginStore = useLoginStore()
+const loading = ref(false)
+const loginFormRef = ref(null)
+const handleLogin = () =>
+  loginFormRef.value.validate((valid) => {
+    if (!valid) return
+
+    loading.value = true
+    loginStore
+      .userLogin(loginForm.value)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err))
+      .finally(() => (loading.value = false))
+  })
 </script>
+
 <style lang="scss" scoped>
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
