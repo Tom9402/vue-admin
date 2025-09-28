@@ -1,5 +1,6 @@
 import { login } from '@/api/sys'
 import { TOKEN } from '@/constant'
+import router from '@/router'
 import { getStorageItem, setStorageItem } from '@/utils/storage'
 import md5 from 'md5'
 import { defineStore } from 'pinia'
@@ -17,6 +18,7 @@ export const useLoginStore = defineStore('login', () => {
           const { token } = data
           tokenState.value = token
           setStorageItem(TOKEN, token)
+          router.push('/')
           resolve()
         })
         .catch((err) => reject(err))

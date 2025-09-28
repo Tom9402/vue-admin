@@ -23,9 +23,14 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px" @click="handleLogin"
-        >登录</el-button
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
       >
+        登录
+      </el-button>
     </el-form>
   </div>
 </template>
@@ -74,7 +79,6 @@ const handleLogin = () =>
     loading.value = true
     loginStore
       .userLogin(loginForm.value)
-      .then((data) => console.log(data))
       .catch((err) => console.log(err))
       .finally(() => (loading.value = false))
   })
