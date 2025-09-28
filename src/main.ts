@@ -11,6 +11,7 @@ import InstallIcons from './icons'
 
 import App from './App.vue'
 import router from './router'
+import './permission'
 
 import './assets/main.css'
 
