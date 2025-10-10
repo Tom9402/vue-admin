@@ -39,6 +39,15 @@ service.interceptors.response.use(
     }
   },
   (error) => {
+    // token超时
+    const outOfTimeState = error.response && error.response.data && error.response.data.code === 401
+
+    if (outOfTimeState) {
+      const { logout } = useLoginStore()
+      logout()
+    }
+
+    // 错误提示
     ElMessage.error(error.message)
     return Promise.reject(error)
   },
