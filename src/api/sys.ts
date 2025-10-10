@@ -6,3 +6,8 @@ export const login = (data: object) =>
     method: 'POST',
     data,
   })
+
+export const getUserInfo = () =>
+  request({
+    url: '/sys/profile',
+  })

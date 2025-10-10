@@ -1,5 +1,9 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { getStorageItem } from './storage'
+import { TOKEN } from '@/constant'
+import { isCheckTimeout } from './auth'
+import { useLoginStore } from '@/stores/user'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -8,6 +12,19 @@ const service = axios.create({
 
 service.interceptors.request.use((config) => {
   config.headers.icode = 'helloqianduanxunlianying'
+  const token = getStorageItem(TOKEN)
+  if (token) {
+    // 检查是否超时
+    if (isCheckTimeout()) {
+      // 超时处理
+      const { logout } = useLoginStore()
+      logout()
+      return Promise.reject(new Error('token超时'))
+    }
+
+    config.headers.Authorization = `Bearer ${token}`
+  }
+
   return config
 })
 
