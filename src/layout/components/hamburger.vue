@@ -1,6 +1,6 @@
 <template>
   <div class="hamburger-container" @click="toggleClick">
-    <SvgIcon class="hamburger" :icon="icon" />
+    <svg-icon class="hamburger" :icon="icon" />
   </div>
 </template>
 
@@ -9,7 +9,6 @@ import { useSidebarStore } from '@/stores/sidebar'
 import { computed } from 'vue'
 
 const sidebarStore = useSidebarStore()
-
 const icon = computed(() => (sidebarStore.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'))
 
 const toggleClick = () => {

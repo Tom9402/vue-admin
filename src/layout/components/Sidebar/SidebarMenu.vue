@@ -3,12 +3,12 @@
   <el-menu
     router
     :default-active="activeMenu"
-    :uniqueOpened="true"
-    :background-color="cssVar.menuBg"
-    :text-color="cssVar.menuText"
-    :active-text-color="cssVar.menuActiveText"
+    :unique-opened="true"
+    :background-color="cssStore.cssVar.menuBg"
+    :text-color="cssStore.cssVar.menuText"
+    :active-text-color="cssStore.cssVar.menuActiveText"
   >
-    <SidebarItem v-for="item in routes" :key="item.path" :route="item" />
+    <sidebar-item v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
 </template>
 
@@ -19,7 +19,9 @@ import { generateMenus, filterRouters } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
 import { useCssVarStore } from '@/stores/cssVar'
 
-const cssVar = useCssVarStore()
+const cssStore = useCssVarStore()
+
+console.log(cssStore.cssVar)
 
 // 计算高亮 menu
 const route = useRoute()

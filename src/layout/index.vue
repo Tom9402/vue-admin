@@ -25,7 +25,7 @@ const sidebarStore = useSidebarStore()
 
 <style lang="scss" scoped>
 @import '@/styles/mixin.scss';
-@import '@/styles/variables.scss';
+@import '@/styles/variables.module.scss';
 
 .app-wrapper {
   @include clearfix;
@@ -40,7 +40,7 @@ const sidebarStore = useSidebarStore()
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
-  transition: width 0.3s ease-in-out;
+  transition: width $sideBarDuration ease-in-out;
 }
 
 .hideSidebar .fixed-header {

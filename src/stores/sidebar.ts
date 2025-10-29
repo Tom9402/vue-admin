@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const useSidebarStore = defineStore('sidebar', {
-  state: () => ({
-    sidebarOpened: true,
-  }),
-  actions: {
-    triggerSidebarOpened() {
-      this.sidebarOpened = !this.sidebarOpened
-    },
-  },
+export const useSidebarStore = defineStore('sidebar', () => {
+  const sidebarOpened = ref(true)
+
+  const triggerSidebarOpened = () => {
+    sidebarOpened.value = !sidebarOpened.value
+  }
+
+  return {
+    sidebarOpened,
+    triggerSidebarOpened,
+  }
 })

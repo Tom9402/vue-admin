@@ -1,6 +1,6 @@
 <template>
   <i v-if="icon.includes('el-icon')" class="sub-el-icon" :class="icon" />
-  <svgIcon v-else :icon="icon" />
+  <svg-icon v-else :icon="icon" />
   <span>{{ title }}</span>
 </template>
 
@@ -8,11 +8,11 @@
 defineProps({
   title: {
     type: String,
-    default: '',
+    required: true,
   },
   icon: {
     type: String,
-    default: '',
+    required: true,
   },
 })
 </script>

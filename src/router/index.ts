@@ -10,6 +10,7 @@ const privateRoutes = [
     path: '/user',
     component: layout,
     redirect: '/user/manage',
+    name: 'userManage',
     meta: {
       title: 'user',
       icon: 'personnel',
@@ -117,7 +118,7 @@ const publicRoutes = [
         component: () => import('@/views/profile/index.vue'),
         meta: {
           title: 'profile',
-          icon: 'el-icon-user',
+          icon: 'personnel',
         },
       },
       {

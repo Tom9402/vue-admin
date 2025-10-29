@@ -1,11 +1,12 @@
 <template>
+  <!-- 支持渲染多级 menu 菜单 -->
   <el-submenu v-if="route.children.length > 0" :index="route.path">
     <template #title>
       <menu-item :title="route.meta.title" :icon="route.meta.icon" />
     </template>
 
     <!-- 循环渲染 -->
-    <SidebarItem v-for="item in route.children" :key="item.path" :route="item" />
+    <sidebar-item v-for="item in route.children" :key="item.path" :route="item" />
   </el-submenu>
 
   <!-- 渲染 item 项 -->
@@ -20,7 +21,9 @@ import MenuItem from './MenuItem.vue'
 const props = defineProps({
   route: {
     type: Object,
-    default: () => ({}),
+    required: true,
   },
 })
+
+console.log(props.route)
 </script>

@@ -6,7 +6,7 @@ import { getStorageItem } from './utils/storage'
 const whiteList = ['/login']
 
 router.beforeEach(async (to, from, next) => {
-  const { userInfoState, getUserInfoAction, hasUserInfo } = useLoginStore()
+  const { getUserInfoAction, hasUserInfo } = useLoginStore()
   if (getStorageItem(TOKEN)) {
     // 存在 token，进入主页
     if (to.path === '/login') {
