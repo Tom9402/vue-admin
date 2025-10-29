@@ -1,5 +1,7 @@
 <template>
   <div class="navbar">
+    <Hamburger class="hamburger-container" />
+
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -25,6 +27,7 @@
 
 <script setup>
 import { useLoginStore } from '@/stores/user'
+import Hamburger from '../hamburger.vue'
 
 const { userInfoState, logout } = useLoginStore()
 </script>
@@ -36,6 +39,17 @@ const { userInfoState, logout } = useLoginStore()
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    cursor: pointer;
+    float: left;
+    transition: background 0.5s;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
 
   .right-menu {
     display: flex;

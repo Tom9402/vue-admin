@@ -2,6 +2,7 @@
   <!-- 一级 menu 菜单 -->
   <el-menu
     router
+    :default-active="activeMenu"
     :uniqueOpened="true"
     :background-color="cssVar.menuBg"
     :text-color="cssVar.menuText"
@@ -13,12 +14,18 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { generateMenus, filterRouters } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
 import { useCssVarStore } from '@/stores/cssVar'
 
 const cssVar = useCssVarStore()
+
+// 计算高亮 menu
+const route = useRoute()
+const activeMenu = computed(() => {
+  return route.path
+})
 
 const router = useRouter()
 const routes = computed(() => {
