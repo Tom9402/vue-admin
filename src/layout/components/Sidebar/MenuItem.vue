@@ -1,6 +1,5 @@
 <template>
-  <i v-if="icon.includes('el-icon')" class="sub-el-icon" :class="icon" />
-  <svg-icon v-else :icon="icon" />
+  <svg-icon :icon="icon" />
   <span>{{ title }}</span>
 </template>
 

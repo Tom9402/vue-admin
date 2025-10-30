@@ -34,6 +34,4 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
-
-console.log(routes.value)
 </script>
