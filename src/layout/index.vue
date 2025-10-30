@@ -40,7 +40,7 @@ const sidebarStore = useSidebarStore()
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
-  transition: width $sideBarDuration ease-in-out;
+  transition: width $sideBarDuration;
 }
 
 .hideSidebar .fixed-header {

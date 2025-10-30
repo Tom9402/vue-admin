@@ -4,6 +4,9 @@
   <el-icon :size="20">
     <Edit />
   </el-icon>
+  <el-icon>
+    <component is="Edit" />
+  </el-icon>
 </template>
 
 <script setup lang="ts"></script>

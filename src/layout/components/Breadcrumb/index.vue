@@ -1,17 +1,20 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>
-      <a href="/">活动管理</a>
+    <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
+      <!-- 不可点击项 -->
+      <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
+        item.meta.title
+      }}</span>
+
+      <!-- 可点击项 -->
+      <a v-else class="redirect" @click.prevent="onLinkClick(item)">{{ item.meta.title }}</a>
     </el-breadcrumb-item>
-    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item>Dashboard</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 
@@ -31,6 +34,13 @@ watch(
     immediate: true,
   },
 )
+
+// 处理点击事件
+const router = useRouter()
+
+const onLinkClick = (item) => {
+  router.push(item.path)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -43,6 +53,15 @@ watch(
   :deep .no-redirect {
     color: #97a8be;
     cursor: text;
+  }
+
+  .redirect {
+    color: #666;
+    font-weight: 600;
+  }
+
+  .redirect:hover {
+    color: #409eff;
   }
 }
 </style>
