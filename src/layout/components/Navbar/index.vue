@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
     <Hamburger class="hamburger-container" />
+    <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
       <!-- 头像 -->
@@ -28,6 +29,7 @@
 <script setup>
 import { useLoginStore } from '@/stores/user'
 import Hamburger from '../hamburger.vue'
+import Breadcrumb from '../Breadcrumb/index.vue'
 
 const { userInfoState, logout } = useLoginStore()
 </script>
