@@ -53,6 +53,10 @@ const { userInfoState, logout } = useLoginStore()
     }
   }
 
+  .breadcrumb-container {
+    float: left;
+  }
+
   .right-menu {
     display: flex;
     align-items: center;
