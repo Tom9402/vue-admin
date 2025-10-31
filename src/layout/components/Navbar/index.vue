@@ -4,6 +4,7 @@
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <LangSelect class="right-menu-item hover-select" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -30,6 +31,7 @@
 import { useLoginStore } from '@/stores/user'
 import Hamburger from '../hamburger.vue'
 import Breadcrumb from '../Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 const { userInfoState, logout } = useLoginStore()
 </script>
@@ -72,6 +74,18 @@ const { userInfoState, logout } = useLoginStore()
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-select:hover {
+        cursor: pointer;
       }
     }
   }

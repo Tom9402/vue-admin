@@ -7,6 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import 'virtual:svg-icons-register'
 
+import i18n from './i18n'
 import InstallIcons from './icons'
 
 import App from './App.vue'
@@ -24,6 +25,8 @@ InstallIcons(app)
 app.use(createPinia())
 app.use(ElementPlus)
 app.use(router)
+// 导入 i18n 插件
+app.use(i18n)
 
 // 全局注册 elements-plus 图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
