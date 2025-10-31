@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { validatePwd } from './rules'
 import { useLoginStore } from '@/stores/user'
 import LangSelect from '@/components/LangSelect/index.vue'
@@ -55,7 +55,7 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: i18n.t('msg.login.usernameRule'),
+      message: computed(() => i18n.t('msg.login.usernameRule')),
     },
   ],
   password: [
