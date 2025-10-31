@@ -6,7 +6,7 @@
         shape="square"
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
       />
-      <h1 class="logo-title" v-if="sidebarStore.sidebarOpened">{{ $t('message.hello') }}</h1>
+      <h1 class="logo-title" v-if="sidebarStore.sidebarOpened">vue-admin</h1>
     </div>
     <el-scrollbar>
       <sidebar-menu />

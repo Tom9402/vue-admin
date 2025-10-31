@@ -5,10 +5,12 @@
   </el-icon>
   <!-- 其他图标 -->
   <div v-else><svg-icon :icon="icon"></svg-icon></div>
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script lang="ts" setup>
+import { generateTitle } from '@/utils/i18n'
+
 defineProps({
   title: {
     type: String,
