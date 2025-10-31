@@ -2,7 +2,8 @@
   <div class="login-container">
     <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFormRef">
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <lang-select class="lang-select" effect="light" />
       </div>
 
       <el-form-item prop="username">
@@ -29,8 +30,10 @@
         :loading="loading"
         @click="handleLogin"
       >
-        登录
+        {{ $t('msg.login.loginBtn') }}
       </el-button>
+
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -39,24 +42,27 @@
 import { ref } from 'vue'
 import { validatePwd } from './rules'
 import { useLoginStore } from '@/stores/user'
+import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
 
 const pwdType = ref('password')
 
 const loginForm = ref({ username: 'super-admin', password: '123456' })
 
+const i18n = useI18n()
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: '此项必填',
+      message: i18n.t('msg.login.usernameRule'),
     },
   ],
   password: [
     {
       required: true,
       trigger: 'blur',
-      validator: validatePwd(),
+      validator: validatePwd(i18n),
     },
   ],
 })
