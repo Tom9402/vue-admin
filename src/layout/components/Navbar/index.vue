@@ -4,7 +4,10 @@
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <ThemePicker class="right-menu-item hover-select" />
+
       <LangSelect class="right-menu-item hover-select" />
+
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -34,6 +37,7 @@ import { useLoginStore } from '@/stores/user'
 import Hamburger from '../hamburger.vue'
 import Breadcrumb from '../Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ThemePicker from '@/components/ThemePicker/index.vue'
 
 const { userInfoState, logout } = useLoginStore()
 </script>
