@@ -1,12 +1,5 @@
 <template>
-  <svg-icon icon="el-icon-user" />
-  <i class="el-icon-user" />
-  <el-icon :size="20">
-    <Edit />
-  </el-icon>
-  <el-icon>
-    <component is="Edit" />
-  </el-icon>
+  <el-pagination :total="100" />
 </template>
 
 <script setup lang="ts"></script>

@@ -18,7 +18,8 @@ import './permission'
 
 import './assets/main.css'
 import { useLanguageStore } from './stores/language'
-import { en, zhCn } from 'element-plus/es/locales.mjs'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
 
 const app = createApp(App)
 
