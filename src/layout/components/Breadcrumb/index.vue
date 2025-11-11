@@ -55,7 +55,7 @@ const onLinkClick = (item) => {
   line-height: 50px;
   margin-left: 10px;
 
-  :deep .no-redirect {
+  :deep(.no-redirect) {
     color: #97a8be;
     cursor: text;
   }

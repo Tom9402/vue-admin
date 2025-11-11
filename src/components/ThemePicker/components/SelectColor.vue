@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useThemeStore } from '@/stores/theme'
 import { ref } from 'vue'
 
 defineProps({
@@ -44,15 +45,19 @@ const predefineColors = [
   'hsla(209, 100%, 56%, 0.73)',
   '#c7158577',
 ]
+
+const themeStore = useThemeStore()
 // 默认色值
-const mColor = ref('#00ff00')
+const mColor = ref(themeStore.mainColor)
 
 // 关闭弹窗
 const closed = () => {
   emits('update:modelValue', false)
 }
+
 // 确认选择
 const confirm = () => {
+  themeStore.setMainColor(mColor.value)
   closed()
 }
 </script>

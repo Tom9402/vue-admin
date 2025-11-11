@@ -1,10 +1,6 @@
 <template>
   <el-dropdown v-bind="$attrs" trigger="hover" class="theme" @command="handleSetTheme">
-    <!-- <div> -->
-    <!-- <el-tooltip :content="$t('msg.navBar.themeChange')"> -->
     <svg-icon icon="change-theme" />
-    <!-- </el-tooltip> -->
-    <!-- </div> -->
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="color">

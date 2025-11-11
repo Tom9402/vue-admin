@@ -17,19 +17,13 @@ import './styles/index.scss'
 import './permission'
 
 import './assets/main.css'
-import { useLanguageStore } from './stores/language'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import en from 'element-plus/es/locale/lang/en'
 
 const app = createApp(App)
 
 InstallIcons(app)
 
 app.use(createPinia())
-const languageStore = useLanguageStore()
-app.use(ElementPlus, {
-  locale: languageStore.language === 'zh' ? zhCn : en,
-})
+app.use(ElementPlus)
 app.use(router)
 // 导入 i18n 插件
 app.use(i18n)
