@@ -61,7 +61,6 @@ const confirm = async () => {
   // 获取主题色
   const newStyleText = await generateNewStyle(mColor.value)
   // 写入新样式
-  console.log(newStyleText)
   writeNewStyle(newStyleText)
   // 保存最新的主题色
   console.log(mColor.value)
