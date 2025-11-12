@@ -17,6 +17,7 @@
 
 <script lang="ts" setup>
 import { useThemeStore } from '@/stores/theme'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 import { ref } from 'vue'
 
 defineProps({
@@ -56,7 +57,14 @@ const closed = () => {
 }
 
 // 确认选择
-const confirm = () => {
+const confirm = async () => {
+  // 获取主题色
+  const newStyleText = await generateNewStyle(mColor.value)
+  // 写入新样式
+  console.log(newStyleText)
+  writeNewStyle(newStyleText)
+  // 保存最新的主题色
+  console.log(mColor.value)
   themeStore.setMainColor(mColor.value)
   closed()
 }
@@ -65,6 +73,7 @@ const confirm = () => {
 <style lang="scss" scoped>
 .center {
   text-align: center;
+
   .title {
     margin-bottom: 12px;
   }

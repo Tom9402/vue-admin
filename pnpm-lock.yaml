@@ -26,6 +26,9 @@ importers:
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(typescript@5.8.3)(vue@3.5.21(typescript@5.8.3))
+      rgb-hex:
+        specifier: ^4.1.0
+        version: 4.1.0
       vue:
         specifier: ^3.5.18
         version: 3.5.21(typescript@5.8.3)
@@ -2747,6 +2750,10 @@ packages:
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
+
+  rgb-hex@4.1.0:
+    resolution: {integrity: sha512-UZLM57BW09Yi9J1R3OP8B1yCbbDK3NT8BDtihGZkGkGEs2b6EaV85rsfJ6yK4F+8UbxFFmfA+9xHT5ZWhN1gDQ==}
+    engines: {node: '>=12'}
 
   rgb@0.1.0:
     resolution: {integrity: sha512-F49dXX73a92N09uQkfCp2QjwXpmJcn9/i9PvjmwsSIXUGqRLCf/yx5Q9gRxuLQTq248kakqQuc8GX/U/CxSqlA==}
@@ -6300,6 +6307,8 @@ snapshots:
   reusify@1.1.0: {}
 
   rfdc@1.4.1: {}
+
+  rgb-hex@4.1.0: {}
 
   rgb@0.1.0: {}
 
