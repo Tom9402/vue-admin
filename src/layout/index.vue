@@ -1,7 +1,11 @@
 <template>
   <div class="app-wrapper" :class="[sidebarStore.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧 menu -->
-    <Sidebar id="guide-sidebar" class="sidebar-container" />
+    <Sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: themeStore.mainColor }"
+    />
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
@@ -15,12 +19,15 @@
 
 <script setup lang="ts">
 import { useSidebarStore } from '@/stores/sidebar'
+import { useThemeStore } from '@/stores/theme'
 
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
 
 const sidebarStore = useSidebarStore()
+
+const themeStore = useThemeStore()
 </script>
 
 <style lang="scss" scoped>

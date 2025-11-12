@@ -5,9 +5,9 @@
     :collapse="!sidebarStore.sidebarOpened"
     :default-active="activeMenu"
     :unique-opened="true"
-    :background-color="cssStore.cssVar.menuBg"
-    :text-color="cssStore.cssVar.menuText"
-    :active-text-color="cssStore.cssVar.menuActiveText"
+    :background-color="themeStore.mainColor"
+    :text-color="themeStore.variables.menuText"
+    :active-text-color="themeStore.variables.menuActiveText"
   >
     <sidebar-item v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
@@ -18,11 +18,12 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { generateMenus, filterRouters } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
-import { useCssVarStore } from '@/stores/cssVar'
 import { useSidebarStore } from '@/stores/sidebar'
+import { useThemeStore } from '@/stores/theme'
 
-const cssStore = useCssVarStore()
 const sidebarStore = useSidebarStore()
+const themeStore = useThemeStore()
+console.log(themeStore)
 
 // 计算高亮 menu
 const route = useRoute()
