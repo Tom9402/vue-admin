@@ -10,6 +10,8 @@
 
       <Screenfull class="right-menu-item hover-effect" />
 
+      <HeaderSearch class="right-menu-item hover-effect" />
+
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -41,6 +43,7 @@ import Breadcrumb from '../Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
+import HeaderSearch from '@/components/HeaderSearch/index.vue'
 
 const { userInfoState, logout } = useLoginStore()
 </script>
