@@ -18,7 +18,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { filterRouters, generateMenus } from '@/utils/route'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import Fuse from 'fuse.js'
 
 const searchSelectRef = ref<HTMLSelectElement>()
 const isShow = ref(false)
@@ -34,6 +37,37 @@ const querySearch = () => console.log('querySearch')
 const onSelectChange = (val: string) => {
   console.log('onSelectChange', val)
 }
+
+// 检索数据源
+const router = useRouter()
+const searchPool = computed(() => {
+  const filterRoutes = filterRouters(router.getRoutes())
+  console.log(generateMenus(filterRoutes))
+  return generateMenus(filterRoutes)
+})
+
+/**
+ * 搜索库相关
+ */
+const fuse = new Fuse(searchPool.value, {
+  // 是否按优先级排序
+  shouldSort: true,
+  // 匹配长度超过该值才会被认为是匹配的
+  minMatchCharLength: 1,
+  // 将被搜索的键列表。 这支持嵌套路径、加权搜索、在字符串和对象数组中搜索。
+  // name: 搜索的键
+  // weight: 对应的权重
+  keys: [
+    {
+      name: 'title',
+      weight: 0.7,
+    },
+    {
+      name: 'path',
+      weight: 0.3,
+    },
+  ],
+})
 </script>
 
 <style scoped lang="scss">
