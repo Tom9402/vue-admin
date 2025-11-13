@@ -6,8 +6,8 @@
     :default-active="activeMenu"
     :unique-opened="true"
     :background-color="themeStore.mainColor"
-    :text-color="themeStore.variables.menuText"
-    :active-text-color="themeStore.variables.menuActiveText"
+    :text-color="themeStore.cssVar.menuText"
+    :active-text-color="themeStore.cssVar.menuActiveText"
   >
     <sidebar-item v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
