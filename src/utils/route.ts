@@ -6,7 +6,7 @@ import type { RouteRecordRaw } from 'vue-router'
  * @param {string} relativePath 相对路径
  * @returns {string} 解析后的路径
  */
-function resolvePath(basePath: string, relativePath: string): string {
+export function resolvePath(basePath: string, relativePath: string): string {
   // 如果是绝对路径（以/开头），直接返回
   if (relativePath.startsWith('/')) {
     return relativePath

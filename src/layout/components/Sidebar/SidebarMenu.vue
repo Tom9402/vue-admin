@@ -23,7 +23,6 @@ import { useThemeStore } from '@/stores/theme'
 
 const sidebarStore = useSidebarStore()
 const themeStore = useThemeStore()
-console.log(themeStore)
 
 // 计算高亮 menu
 const route = useRoute()

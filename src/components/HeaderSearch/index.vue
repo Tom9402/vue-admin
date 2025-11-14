@@ -12,16 +12,22 @@
       :remote-method="querySearch"
       @change="onSelectChange"
     >
-      <el-option v-for="opt in 5" :key="opt" :label="opt" :value="opt" />
+      <el-option
+        v-for="opt in searchOptions"
+        :key="opt.item.path"
+        :label="opt.item.title.join(' > ')"
+        :value="opt.item"
+      />
     </el-select>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { filterRouters, generateMenus } from '@/utils/route'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { filterRouters } from '@/utils/route'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Fuse from 'fuse.js'
+import { generateRoutes } from './FuseData'
 
 const searchSelectRef = ref<HTMLSelectElement>()
 const isShow = ref(false)
@@ -31,19 +37,12 @@ const onShowClick = () => {
 }
 
 const search = ref('')
-const querySearch = () => console.log('querySearch')
-
-// 选中回调
-const onSelectChange = (val: string) => {
-  console.log('onSelectChange', val)
-}
 
 // 检索数据源
 const router = useRouter()
 const searchPool = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
-  console.log(generateMenus(filterRoutes))
-  return generateMenus(filterRoutes)
+  return generateRoutes(filterRoutes)
 })
 
 /**
@@ -68,6 +67,22 @@ const fuse = new Fuse(searchPool.value, {
     },
   ],
 })
+
+// 搜索结果
+const searchOptions = ref([])
+// 搜索方法
+const querySearch = (query: string) => {
+  if (query !== '') {
+    console.log(query)
+    searchOptions.value = fuse.search(query)
+    console.log(searchOptions.value)
+  } else {
+    searchOptions.value = []
+  }
+}
+
+// 选中回调
+const onSelectChange = (val: string) => router.push(val.path)
 </script>
 
 <style scoped lang="scss">
@@ -78,24 +93,26 @@ const fuse = new Fuse(searchPool.value, {
     font-size: 18px;
     vertical-align: middle;
   }
-}
-.header-search-select {
-  font-size: 18px;
-  transition: width 0.3s ease-in-out;
-  width: 0;
-  overflow: hidden;
-  background: transparent;
-  border-radius: 0;
-  display: inline-block;
-  vertical-align: middle;
-  :deep(.el-input__inner) {
+
+  .header-search-select {
+    font-size: 18px;
+    transition: width 0.3s ease-in-out;
+    width: 0;
+    overflow: hidden;
+    background: transparent;
     border-radius: 0;
-    border: 0;
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: none !important;
-    border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
     vertical-align: middle;
+
+    :deep(.el-input__inner) {
+      border-radius: 0;
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+      box-shadow: none !important;
+      border-bottom: 1px solid #d9d9d9;
+      vertical-align: middle;
+    }
   }
   &.show .header-search-select {
     width: 210px;
