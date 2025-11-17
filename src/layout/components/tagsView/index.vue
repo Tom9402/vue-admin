@@ -1,19 +1,27 @@
 <template>
   <div class="tags-view-container">
-    <router-link
-      v-for="(tag, index) in appStore.tagsViewList"
-      :key="tag.path"
-      :to="{ path: tag.fullPath }"
-      class="tags-view-item"
-      :class="isActive(tag) ? 'active' : ''"
-      :style="{
-        backgroundColor: isActive(tag) ? themeStore.cssVar.menuBg : '',
-        borderColor: isActive(tag) ? themeStore.cssVar.menuBg : '',
-      }"
-    >
-      {{ tag.title }}
-      <i v-show="!isActive(tag)" class="el-icon-close" @click.prevent.stop="onCloseClick(index)" />
-    </router-link>
+    <el-scrollbar class="tags-view-scrollbar">
+      <router-link
+        v-for="(tag, index) in appStore.tagsViewList"
+        :key="tag.path"
+        :to="{ path: tag.fullPath }"
+        class="tags-view-item"
+        :class="isActive(tag) ? 'active' : ''"
+        :style="{
+          backgroundColor: isActive(tag) ? themeStore.cssVar.menuBg : '',
+          borderColor: isActive(tag) ? themeStore.cssVar.menuBg : '',
+        }"
+        @contextmenu.prevent="openMenu($event, index)"
+      >
+        {{ tag.title }}
+        <i
+          v-show="!isActive(tag)"
+          class="el-icon-close"
+          @click.prevent.stop="onCloseClick(index)"
+        />
+      </router-link>
+    </el-scrollbar>
+    <ContextMenu v-show="visible" :style="menuStyle" :index="selectIndex" />
   </div>
 </template>
 
@@ -22,6 +30,26 @@ import { useRoute } from 'vue-router'
 
 import { useThemeStore } from '@/stores/theme'
 import { useAppStore } from '@/stores/app'
+import ContextMenu from './ContextMenu.vue'
+import { ref } from 'vue'
+
+// contextMenu 相关
+const visible = ref(false)
+const selectIndex = ref(0)
+const menuStyle = ref({
+  top: '0',
+  left: '0',
+})
+// 打开 contextMenu
+const openMenu = (e: MouseEvent, index: number) => {
+  const { x, y } = e
+  selectIndex.value = index
+  menuStyle.value = {
+    top: `${y}px`,
+    left: `${x}px`,
+  }
+  visible.value = true
+}
 
 const themeStore = useThemeStore()
 const appStore = useAppStore()

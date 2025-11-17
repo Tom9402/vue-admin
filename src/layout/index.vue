@@ -25,7 +25,7 @@ import { useThemeStore } from '@/stores/theme'
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
-import TagsView from './components/tagsView.vue'
+import TagsView from './components/tagsView/index.vue'
 
 const sidebarStore = useSidebarStore()
 
