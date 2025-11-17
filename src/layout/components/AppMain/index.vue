@@ -7,6 +7,8 @@
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app'
 import { generateTitle } from '@/utils/i18n'
+import { isTags } from '@/utils/tags'
+import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -24,6 +26,26 @@ const getTitle = (route: { path: string; meta: { title: string } }) => {
   }
   return title
 }
+
+// 监听路由变化
+watch(
+  route,
+  (to, from) => {
+    if (!isTags(to.path)) return
+
+    const { fullPath, meta, name, params, path, query } = to
+    appStore.addTagsViewList({
+      fullPath,
+      meta,
+      name,
+      params,
+      path,
+      query,
+      title: getTitle(to),
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <style lang="scss" scoped>

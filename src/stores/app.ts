@@ -9,11 +9,10 @@ export const useAppStore = defineStore('app', () => {
   const addTagsViewList = (tag: { path: string; name: string }) => {
     const isFind = tagsViewList.value.find((item: { path: string }) => item.path === tag.path)
     // 处理重复
-    if (isFind) {
-      return
+    if (!isFind) {
+      tagsViewList.value.push(tag)
+      setStorageItem(TAGS_VIEW, tagsViewList.value)
     }
-    tagsViewList.value.push(tag)
-    setStorageItem(TAGS_VIEW, tagsViewList.value)
   }
 
   return { tagsViewList, addTagsViewList }
