@@ -10,6 +10,7 @@
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
         <Navbar />
+        <TagsView />
       </div>
       <!-- 内容区 -->
       <AppMain />
@@ -24,6 +25,7 @@ import { useThemeStore } from '@/stores/theme'
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import TagsView from './components/tagsView.vue'
 
 const sidebarStore = useSidebarStore()
 
