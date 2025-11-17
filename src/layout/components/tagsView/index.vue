@@ -60,7 +60,9 @@ const route = useRoute()
 const isActive = (tag: { path: string }) => tag.path === route.path
 
 // 关闭 tag 的点击事件
-const onCloseClick = (index) => {}
+const onCloseClick = (index: number) => {
+  appStore.removeTagsView({ type: 'index', index })
+}
 </script>
 
 <style scoped lang="scss">

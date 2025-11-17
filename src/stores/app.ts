@@ -20,5 +20,26 @@ export const useAppStore = defineStore('app', () => {
     setStorageItem(TAGS_VIEW, tagsViewList.value)
   }
 
-  return { tagsViewList, addTagsViewList, changeTagsView }
+  /**
+   * 删除 tag
+   * @param {type: 'other'||'right'||'index', index: index} payload
+   */
+  const removeTagsView = (payload) => {
+    const { type, index } = payload
+
+    if (type === 'index') {
+      tagsViewList.value.splice(index, 1)
+      return
+    }
+
+    if (type === 'other') {
+      tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
+      tagsViewList.value.splice(0, index)
+    } else if (type === 'right') {
+      tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
+    }
+    setStorageItem(TAGS_VIEW, tagsViewList.value)
+  }
+
+  return { tagsViewList, addTagsViewList, changeTagsView, removeTagsView }
 })

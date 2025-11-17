@@ -9,7 +9,10 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
+import { useAppStore } from '@/stores/app'
+import { useRouter } from 'vue-router'
+
+const props = defineProps({
   index: {
     type: Number,
     default: 0,
@@ -17,16 +20,19 @@ defineProps({
   },
 })
 
+const router = useRouter()
+
 const onRefreshClick = () => {
-  console.log('onRefreshClick')
+  router.go(0)
 }
 
+const appStore = useAppStore()
 const onCloseRightClick = () => {
-  console.log('onCloseRightClick')
+  appStore.removeTagsView({ type: 'right', index: props.index })
 }
 
 const onCloseOtherClick = () => {
-  console.log('onCloseOtherClick')
+  appStore.removeTagsView({ type: 'other', index: props.index })
 }
 </script>
 
