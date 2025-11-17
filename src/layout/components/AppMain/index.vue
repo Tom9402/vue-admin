@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/app'
-import { generateTitle } from '@/utils/i18n'
+import { generateTitle, watchSwitchLang } from '@/utils/i18n'
 import { isTags } from '@/utils/tags'
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -45,6 +45,13 @@ watch(
     })
   },
   { immediate: true },
+)
+
+// 监听语言变化，国际化 tags
+watchSwitchLang(() =>
+  appStore.tagsViewList.forEach((route, index) =>
+    appStore.changeTagsView({ index, tag: { ...route, title: getTitle(route) } }),
+  ),
 )
 </script>
 

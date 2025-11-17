@@ -15,5 +15,10 @@ export const useAppStore = defineStore('app', () => {
     }
   }
 
-  return { tagsViewList, addTagsViewList }
+  const changeTagsView = ({ index, tag }) => {
+    tagsViewList.value[index] = tag
+    setStorageItem(TAGS_VIEW, tagsViewList.value)
+  }
+
+  return { tagsViewList, addTagsViewList, changeTagsView }
 })
