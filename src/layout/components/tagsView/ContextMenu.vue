@@ -4,6 +4,7 @@
       {{ $t('msg.tagsView.refresh') }}
     </li>
     <li @click="onCloseRightClick">{{ $t('msg.tagsView.closeRight') }}</li>
+    <li @click="onCloseLeftClick">{{ $t('msg.tagsView.closeLeft') }}</li>
     <li @click="onCloseOtherClick">{{ $t('msg.tagsView.closeOther') }}</li>
   </ul>
 </template>
@@ -27,8 +28,13 @@ const onRefreshClick = () => {
 }
 
 const appStore = useAppStore()
+
 const onCloseRightClick = () => {
   appStore.removeTagsView({ type: 'right', index: props.index })
+}
+
+const onCloseLeftClick = () => {
+  appStore.removeTagsView({ type: 'left', index: props.index })
 }
 
 const onCloseOtherClick = () => {

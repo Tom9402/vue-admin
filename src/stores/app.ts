@@ -32,12 +32,19 @@ export const useAppStore = defineStore('app', () => {
       return
     }
 
-    if (type === 'other') {
-      tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
-      tagsViewList.value.splice(0, index)
-    } else if (type === 'right') {
-      tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
+    switch (type) {
+      case 'other':
+        tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
+        tagsViewList.value.splice(0, index)
+        break
+      case 'right':
+        tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
+        break
+      case 'left':
+        tagsViewList.value.splice(0, index)
+        break
     }
+
     setStorageItem(TAGS_VIEW, tagsViewList.value)
   }
 
