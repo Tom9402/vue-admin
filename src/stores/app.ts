@@ -27,11 +27,6 @@ export const useAppStore = defineStore('app', () => {
   const removeTagsView = (payload) => {
     const { type, index } = payload
 
-    if (type === 'index') {
-      tagsViewList.value.splice(index, 1)
-      return
-    }
-
     switch (type) {
       case 'other':
         tagsViewList.value.splice(index + 1, tagsViewList.value.length - index + 1)
@@ -42,6 +37,9 @@ export const useAppStore = defineStore('app', () => {
         break
       case 'left':
         tagsViewList.value.splice(0, index)
+        break
+      case 'index':
+        tagsViewList.value.splice(index, 1)
         break
     }
 

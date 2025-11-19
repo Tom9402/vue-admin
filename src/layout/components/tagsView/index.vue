@@ -14,11 +14,13 @@
         @contextmenu.prevent="openMenu($event, index)"
       >
         {{ tag.title }}
-        <i
+        <el-icon
           v-show="!isActive(tag)"
           class="el-icon-close"
           @click.prevent.stop="onCloseClick(index)"
-        />
+        >
+          <Close />
+        </el-icon>
       </router-link>
     </el-scrollbar>
     <ContextMenu v-show="visible" :style="menuStyle" :index="selectIndex" />
@@ -112,18 +114,10 @@ const onCloseClick = (index: number) => {
     .el-icon-close {
       width: 16px;
       height: 16px;
-      line-height: 10px;
-      vertical-align: 2px;
       border-radius: 50%;
-      text-align: center;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       transform-origin: 100% 50%;
 
-      &:before {
-        transform: scale(0.6);
-        display: inline-block;
-        vertical-align: -3px;
-      }
       &:hover {
         background: #b4bccc;
         color: #fff;
