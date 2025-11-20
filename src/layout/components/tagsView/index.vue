@@ -33,7 +33,7 @@ import { useRoute } from 'vue-router'
 import { useThemeStore } from '@/stores/theme'
 import { useAppStore } from '@/stores/app'
 import ContextMenu from './ContextMenu.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 // contextMenu 相关
 const visible = ref(false)
@@ -65,6 +65,18 @@ const isActive = (tag: { path: string }) => tag.path === route.path
 const onCloseClick = (index: number) => {
   appStore.removeTagsView({ type: 'index', index })
 }
+
+const closeMenu = () => {
+  visible.value = false
+}
+
+watch(visible, (val) => {
+  if (val) {
+    document.body.addEventListener('click', closeMenu)
+  } else {
+    document.body.removeEventListener('click', closeMenu)
+  }
+})
 </script>
 
 <style scoped lang="scss">
