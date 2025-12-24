@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <Hamburger class="hamburger-container" />
-    <Breadcrumb class="breadcrumb-container" />
+    <Breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
 
     <div class="right-menu">
       <ThemePicker class="right-menu-item hover-select" />

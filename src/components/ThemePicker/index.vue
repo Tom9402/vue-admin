@@ -1,6 +1,6 @@
 <template>
   <el-dropdown v-bind="$attrs" trigger="hover" class="theme" @command="handleSetTheme">
-    <svg-icon icon="change-theme" />
+    <div><svg-icon id="guide-theme" icon="change-theme" /></div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="color">

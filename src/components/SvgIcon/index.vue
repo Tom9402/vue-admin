@@ -4,8 +4,9 @@
     class="svg-external-icon svg-icon"
     :class="className"
     :style="styleExternalIcon"
+    :id="id"
   />
-  <svg v-else class="svg-icon" :class="className" aria-hidden="true">
+  <svg v-else class="svg-icon" :class="className" aria-hidden="true" :id="id">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -20,6 +21,10 @@ const props = defineProps({
     required: true,
   },
   className: {
+    type: String,
+    default: '',
+  },
+  id: {
     type: String,
     default: '',
   },
