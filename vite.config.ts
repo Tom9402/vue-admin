@@ -25,6 +25,7 @@ export default defineConfig({
     },
   },
   server: {
+    // 配置反向代理
     proxy: {
       '/api': {
         target: 'https://api.imooc-admin.lgdsunday.club/',

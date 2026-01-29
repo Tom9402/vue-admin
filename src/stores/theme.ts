@@ -15,6 +15,10 @@ export const useThemeStore = defineStore('theme', () => {
 
   const setMainColor = (color: string) => {
     mainColor.value = color
+    cssVar.value = {
+      ...variables,
+      ...generateColors(color),
+    }
     setStorageItem(MAIN_COLOR, color)
   }
 
