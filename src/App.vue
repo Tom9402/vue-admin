@@ -6,6 +6,8 @@ import en from 'element-plus/es/locale/lang/en'
 import { generateNewStyle, writeNewStyle } from './utils/theme'
 import { useThemeStore } from './stores/theme'
 
+const a = 6
+
 const languageStore = useLanguageStore()
 const themeStore = useThemeStore()
 generateNewStyle(themeStore.mainColor).then((newStyTxt) => writeNewStyle(newStyTxt))
