@@ -16,5 +16,3 @@ generateNewStyle(themeStore.mainColor).then((newStyTxt) => writeNewStyle(newStyT
     <RouterView />
   </el-config-provider>
 </template>
-
-<style scoped></style>
