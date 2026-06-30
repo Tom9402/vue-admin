@@ -16,21 +16,21 @@ export default defineConfig({
     vueDevTools(),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
-      symbolId: 'icon-[dir]-[name]',
-    }),
+      symbolId: 'icon-[dir]-[name]'
+    })
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
   server: {
     // 配置反向代理
     proxy: {
       '/api': {
         target: 'https://api.imooc-admin.lgdsunday.club/',
-        changeOrigin: true,
-      },
-    },
-  },
+        changeOrigin: true
+      }
+    }
+  }
 })
