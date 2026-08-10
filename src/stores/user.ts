@@ -11,6 +11,7 @@ export const useLoginStore = defineStore('login', () => {
   const tokenState = ref(getStorageItem(TOKEN) || '')
   const userInfoState = ref({})
 
+  // 是否有用户信息
   const hasUserInfo = computed(() => JSON.stringify(userInfoState.value) !== '{}')
 
   const userLogin = (userInfo: object) => {
@@ -24,7 +25,7 @@ export const useLoginStore = defineStore('login', () => {
           tokenState.value = token
           setStorageItem(TOKEN, token)
 
-          // 保存时间戳
+          // 保存登录时间
           setTimeStamp()
 
           router.push('/')

@@ -1,5 +1,7 @@
 <template>
-  <div class="app-wrapper" :class="[sidebarStore.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
+  <div class="app-wrapper"
+   :class="[sidebarStore.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+   >
     <!-- 左侧 menu -->
     <Sidebar
       id="guide-sidebar"

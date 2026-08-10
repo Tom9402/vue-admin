@@ -12,7 +12,7 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next('/')
     } else {
-      // 获取用户信息
+      // 若没有用户信息，获取用户信息
       if (!hasUserInfo.value) {
         await getUserInfoAction()
       }

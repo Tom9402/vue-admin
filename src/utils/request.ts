@@ -10,6 +10,9 @@ const service = axios.create({
   timeout: 5000,
 })
 
+// Uncaught ReferenceError: Cannot access 'useLoginStore' before initialization
+// const { logout } = useLoginStore()
+
 service.interceptors.request.use((config) => {
   config.headers.icode = 'helloqianduanxunlianying'
   const token = getStorageItem(TOKEN)
