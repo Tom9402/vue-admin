@@ -14,11 +14,12 @@ export const useThemeStore = defineStore('theme', () => {
   })
 
   const setMainColor = (color: string) => {
-    mainColor.value = color
     cssVar.value = {
       ...variables,
       ...generateColors(color),
     }
+    // 设置主颜色
+    mainColor.value = color
     setStorageItem(MAIN_COLOR, color)
   }
 

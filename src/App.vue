@@ -7,6 +7,8 @@ import { generateNewStyle, writeNewStyle } from './utils/theme'
 import { useThemeStore } from './stores/theme'
 
 const languageStore = useLanguageStore()
+
+// 保持缓存的主题色
 const themeStore = useThemeStore()
 generateNewStyle(themeStore.mainColor).then((newStyTxt) => writeNewStyle(newStyTxt))
 </script>

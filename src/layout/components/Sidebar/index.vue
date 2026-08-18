@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+  <div>
+    <!-- <Button @click="logoHeight += 10">height plus</Button> -->
     <div class="logo-container">
       <el-avatar
         :size="logoHeight"
@@ -17,8 +18,10 @@
 <script lang="ts" setup>
 import { useSidebarStore } from '@/stores/sidebar'
 import SidebarMenu from './SidebarMenu.vue'
+import { ref } from 'vue'
 
-const logoHeight = 44
+// const logoHeight = 44
+const logoHeight = ref(44)
 const sidebarStore = useSidebarStore()
 </script>
 
@@ -27,7 +30,7 @@ const sidebarStore = useSidebarStore()
   display: flex;
   align-items: center;
   justify-content: center;
-  height: v-bind(logoHeight) + 'px';
+  height: v-bind(logoHeight);
   padding: 10px 0 22px 0;
   .logo-title {
     margin-left: 10px;

@@ -24,8 +24,8 @@ defineProps({
   modelValue: {
     type: Boolean,
     default: false,
-    required: true,
-  },
+    required: true
+  }
 })
 const emits = defineEmits(['update:modelValue'])
 
@@ -44,7 +44,7 @@ const predefineColors = [
   'hsva(120, 40, 94, 0.5)',
   'hsl(181, 100%, 37%)',
   'hsla(209, 100%, 56%, 0.73)',
-  '#c7158577',
+  '#c7158577'
 ]
 
 const themeStore = useThemeStore()
@@ -63,7 +63,6 @@ const confirm = async () => {
   // 写入新样式
   writeNewStyle(newStyleText)
   // 保存最新的主题色
-  console.log(mColor.value)
   themeStore.setMainColor(mColor.value)
   closed()
 }

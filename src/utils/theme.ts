@@ -75,7 +75,7 @@ export const generateNewStyle = async (primaryColor: string) => {
  * @param {*} isNewStyleTag 是否生成新的 style 标签
  */
 
-export const writeNewStyle = (elNewStyle) => {
+export const writeNewStyle = (elNewStyle: string) => {
   const style = document.createElement('style')
   style.innerText = elNewStyle
   document.head.appendChild(style)
