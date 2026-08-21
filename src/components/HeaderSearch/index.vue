@@ -62,13 +62,13 @@ const initFuse = (list: Array<{ title: string[]; path: string }>) => {
     keys: [
       {
         name: 'title',
-        weight: 0.7,
+        weight: 0.7
       },
       {
         name: 'path',
-        weight: 0.3,
-      },
-    ],
+        weight: 0.3
+      }
+    ]
   })
 }
 initFuse(searchPool.value)
@@ -78,7 +78,6 @@ const searchOptions = ref([])
 // 搜索方法
 const querySearch = (query: string) => {
   if (query !== '') {
-    console.log(query)
     searchOptions.value = fuse.search(query)
     console.log(searchOptions.value)
   } else {

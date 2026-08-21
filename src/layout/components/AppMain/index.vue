@@ -47,17 +47,17 @@ watch(
       params,
       path,
       query,
-      title: getTitle(to),
+      title: getTitle(to)
     })
   },
-  { immediate: true },
+  { immediate: true }
 )
 
 // 监听语言变化，国际化 tags
 watchSwitchLang(() =>
   appStore.tagsViewList.forEach((route, index) =>
-    appStore.changeTagsView({ index, tag: { ...route, title: getTitle(route) } }),
-  ),
+    appStore.changeTagsView({ index, tag: { ...route, title: getTitle(route) } })
+  )
 )
 </script>
 
