@@ -37,7 +37,7 @@ export const useLoginStore = defineStore('login', () => {
 
   const getUserInfoAction = async () => {
     const res = await getUserInfo()
-    userInfoState.value = res
+    userInfoState.value = res.data
     return res
   }
 

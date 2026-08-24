@@ -33,29 +33,31 @@
     <div class="project-bio">
       <div class="project-bio-section">
         <div class="project-bio-section-header">
-          <svg-icon icon="introduce" />
-          <span>{{ $t('msg.profile.projectIntroduction') }}</span>
+          <svg-icon icon="reward" /><span>{{ $t('msg.profile.projectFunction') }}</span>
         </div>
         <div class="project-bio-section-body">
-          <div class="text-muted">
-            {{ $t('msg.profile.muted') }}
+          <div class="progress-item" v-for="item in features" :key="item.id">
+            <div>{{ item.title }}</div>
+            <el-progress :percentage="item.percentage" status="success" />
           </div>
         </div>
       </div>
     </div>
   </el-card>
 </template>
+
 <script setup>
 import { useLoginStore } from '@/stores/user'
 import PanThumb from './PanThumb.vue'
 
-defineProps({
+const props = defineProps({
   features: {
     type: Array,
+    required: true,
     default: () => []
   }
 })
-
+console.log(props.features)
 const { userInfoState } = useLoginStore()
 </script>
 
