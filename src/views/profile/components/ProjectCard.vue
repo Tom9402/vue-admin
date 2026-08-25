@@ -50,7 +50,7 @@
 import { useLoginStore } from '@/stores/user'
 import PanThumb from './PanThumb.vue'
 
-const props = defineProps({
+defineProps({
   features: {
     type: Array,
     required: true,
