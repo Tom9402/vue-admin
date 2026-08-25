@@ -31,6 +31,7 @@ import Feature from './components/Feature.vue'
 import Author from './components/Author.vue'
 import { ref } from 'vue'
 import { feature } from '@/api/user'
+import { watchSwitchLang } from '@/utils/i18n.ts'
 
 const activeName = ref('feature')
 
@@ -41,6 +42,8 @@ const getFeature = async () => {
   featureData.value = res.data
 }
 getFeature()
+
+watchSwitchLang(getFeature)
 </script>
 
 <style lang="scss" scoped>

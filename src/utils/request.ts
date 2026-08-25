@@ -4,6 +4,7 @@ import { getStorageItem } from './storage'
 import { TOKEN } from '@/constant'
 import { isCheckTimeout } from './auth'
 import { useLoginStore } from '@/stores/user'
+import { useLanguageStore } from '@/stores/language'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -27,6 +28,8 @@ service.interceptors.request.use((config) => {
 
     config.headers.Authorization = `Bearer ${token}`
   }
+  // 配置接口国际化
+  config.headers['Accept-Language'] = useLanguageStore().language
 
   return config
 })

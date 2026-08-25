@@ -19,8 +19,8 @@ export const useLoginStore = defineStore('login', () => {
 
     return new Promise((resolve, reject) => {
       login({ username, password: md5(password) })
-        .then((data) => {
-          const { token } = data
+        .then(res => {
+          const { token } = res.data
           // 保存 token
           tokenState.value = token
           setStorageItem(TOKEN, token)

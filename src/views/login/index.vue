@@ -1,6 +1,12 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFormRef">
+    <el-form
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+      ref="loginFormRef"
+      @submit.prevent="handleLogin"
+    >
       <div class="title-container">
         <h3 class="title">{{ $t('msg.login.title') }}</h3>
         <lang-select class="lang-select" effect="light" />
@@ -26,9 +32,9 @@
 
       <el-button
         type="primary"
+        native-type="submit"
         style="width: 100%; margin-bottom: 30px"
         :loading="loading"
-        @click="handleLogin"
       >
         {{ $t('msg.login.loginBtn') }}
       </el-button>
@@ -55,16 +61,16 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: computed(() => i18n.t('msg.login.usernameRule')),
-    },
+      message: computed(() => i18n.t('msg.login.usernameRule'))
+    }
   ],
   password: [
     {
       required: true,
       trigger: 'blur',
-      validator: validatePwd(i18n),
-    },
-  ],
+      validator: validatePwd(i18n)
+    }
+  ]
 })
 
 const onChangePwdType = () => {

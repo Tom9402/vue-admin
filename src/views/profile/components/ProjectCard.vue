@@ -15,16 +15,16 @@
           :width="'100px'"
         >
           <div>Hello</div>
-          {{ userInfoState.title }}
+          {{ useLoginStore().userInfoState.title }}
         </pan-thumb>
       </div>
       <!-- 姓名 && 角色 -->
       <div class="box-center">
         <div class="user-name text-center">
-          {{ userInfoState.username }}
+          {{ useLoginStore().userInfoState.username }}
         </div>
         <div class="user-role text-center text-muted">
-          {{ userInfoState.title }}
+          {{ useLoginStore().userInfoState.title }}
         </div>
       </div>
     </div>
@@ -57,8 +57,6 @@ const props = defineProps({
     default: () => []
   }
 })
-console.log(props.features)
-const { userInfoState } = useLoginStore()
 </script>
 
 <style lang="scss" scoped>
