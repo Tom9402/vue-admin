@@ -29,7 +29,11 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')"> </el-table-column>
+        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
+        </el-table-column>
         <el-table-column :label="$t('msg.excel.action')" fixed="right" width="260">
           <template #default>
             <el-button type="primary" size="mini">{{ $t('msg.excel.show') }}</el-button>
@@ -69,8 +73,8 @@ const getListData = async () => {
     page: page.value,
     size: size.value
   })
-  tableData.value = result.list
-  total.value = result.total
+  tableData.value = result.data.list
+  total.value = result.data.total
 }
 getListData()
 // 监听语言切换

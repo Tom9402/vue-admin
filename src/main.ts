@@ -8,6 +8,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'virtual:svg-icons-register'
 
 import i18n from './i18n'
+import installFilter from './filter'
 import InstallIcons from './icons'
 
 import App from './App.vue'
@@ -21,6 +22,8 @@ import './assets/main.css'
 const app = createApp(App)
 
 InstallIcons(app)
+
+installFilter(app)
 
 app.use(createPinia())
 app.use(ElementPlus)
