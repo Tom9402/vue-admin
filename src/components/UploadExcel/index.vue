@@ -27,14 +27,13 @@
 </template>
 
 <script setup>
-import XLSX from 'xlsx'
+import * as XLSX from 'xlsx'
 import { ref, defineProps } from 'vue'
 
 const props = defineProps({
   // 上传前的回调函数
   beforeUpload: {
-    type: Function,
-    default: () => {}
+    type: Function
   },
   // 成功回调函数
   onSuccess: {
@@ -55,13 +54,23 @@ const handleUpload = () => {
 const generateData = (excelData) => props.onSuccess && props.onSuccess(excelData)
 
 // 获取表头
-const getHeaderRow = (worksheet) => {
-  const header = XLSX.utils.sheet_to_json(worksheet, { header: 1 })
-  return header[0]
+const getHeaderRow = (sheet) => {
+  const headers = []
+  const range = XLSX.utils.decode_range(sheet['!ref'])
+  let C
+  const R = range.s.r
+  for (C = range.s.c; C <= range.e.c; ++C) {
+    const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]
+    let hdr = 'UNKNOWN ' + C
+    if (cell && cell.t) hdr = XLSX.utils.format_cell(cell)
+    headers.push(hdr)
+  }
+  return headers
 }
 
 // 读取数据（异步）
 const readerData = (rawFile) => {
+  console.log(rawFile)
   loading.value = true
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -91,8 +100,10 @@ const readerData = (rawFile) => {
 // 触发上传事件
 const upload = (rawFile) => {
   excelUploadInput.value.value = null
+
   // 如果没有指定上传前回调的话
   if (!props.beforeUpload) {
+    console.log('没有指定上传前回调')
     readerData(rawFile)
     return
   }

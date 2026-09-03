@@ -3,8 +3,8 @@
     <el-card class="header">
       <div>
         <el-button type="primary" @click="onImportExcelClick">
-          {{ $t('msg.excel.importExcel') }}</el-button
-        >
+          {{ $t('msg.excel.importExcel') }}
+        </el-button>
         <el-button type="success">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
