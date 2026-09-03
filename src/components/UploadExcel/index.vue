@@ -37,8 +37,7 @@ const props = defineProps({
   },
   // 成功回调函数
   onSuccess: {
-    type: Function,
-    default: () => {}
+    type: Function
   }
 })
 
@@ -70,7 +69,6 @@ const getHeaderRow = (sheet) => {
 
 // 读取数据（异步）
 const readerData = (rawFile) => {
-  console.log(rawFile)
   loading.value = true
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -103,7 +101,6 @@ const upload = (rawFile) => {
 
   // 如果没有指定上传前回调的话
   if (!props.beforeUpload) {
-    console.log('没有指定上传前回调')
     readerData(rawFile)
     return
   }
