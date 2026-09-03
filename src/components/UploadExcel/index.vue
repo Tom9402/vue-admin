@@ -29,6 +29,33 @@
 <script setup>
 import * as XLSX from 'xlsx'
 import { ref, defineProps } from 'vue'
+import { getHeaderRow, isExcel } from './utils'
+import { ElMessage } from 'element-plus'
+
+// 拖拽文件释放时触发
+const handleDrop = (e) => {
+  // 上传中跳过
+  if (loading.value) return
+
+  const files = e.dataTransfer.files
+  if (files.length !== 1) {
+    ElMessage.error('请上传一个文件')
+    return
+  }
+  const rawFile = files[0]
+  if (!isExcel(rawFile)) {
+    ElMessage.error('文件必须是 .xlsx, .xls, .csv 格式')
+    return false
+  }
+  // 上传文件
+  upload(rawFile)
+}
+
+// 拖拽悬停时触发
+const handleDragover = (e) => {
+  // 在新位置生成源项的副本
+  e.dataTransfer.dropEffect = 'copy'
+}
 
 const props = defineProps({
   // 上传前的回调函数
@@ -51,21 +78,6 @@ const handleUpload = () => {
 
 // 根据导入内容，生成数据
 const generateData = (excelData) => props.onSuccess && props.onSuccess(excelData)
-
-// 获取表头
-const getHeaderRow = (sheet) => {
-  const headers = []
-  const range = XLSX.utils.decode_range(sheet['!ref'])
-  let C
-  const R = range.s.r
-  for (C = range.s.c; C <= range.e.c; ++C) {
-    const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]
-    let hdr = 'UNKNOWN ' + C
-    if (cell && cell.t) hdr = XLSX.utils.format_cell(cell)
-    headers.push(hdr)
-  }
-  return headers
-}
 
 // 读取数据（异步）
 const readerData = (rawFile) => {
