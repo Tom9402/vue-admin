@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import UploadExcel from '@/components/UploadExcel'
+import UploadExcel from '@/components/UploadExcel/index.vue'
 </script>

@@ -38,7 +38,8 @@
     "screenfull": "^6.0.2",
     "vue": "^3.5.18",
     "vue-i18n": "11",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.1",
