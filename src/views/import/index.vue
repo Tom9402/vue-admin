@@ -15,11 +15,11 @@ const i18n = useI18n()
 /*
  * 筛选数据
  */
-const generateData = (results) => {
+const generateData = results => {
   const arr = []
-  results.forEach((item) => {
+  results.forEach(item => {
     const userInfo = {}
-    Object.keys(item).forEach((key) => {
+    Object.keys(item).forEach(key => {
       userInfo[USER_RELATIONS[key]] = item[key]
     })
     arr.push(userInfo)

@@ -28,7 +28,8 @@ export const useLoginStore = defineStore('login', () => {
           // 保存登录时间
           setTimeStamp()
 
-          router.push('/')
+          const redirect = router.currentRoute.value.query.redirect
+          router.push(typeof redirect === 'string' && redirect !== '/login' ? redirect : '/')
           resolve()
         })
         .catch((err) => reject(err))
@@ -42,10 +43,11 @@ export const useLoginStore = defineStore('login', () => {
   }
 
   const logout = () => {
+    const redirect = router.currentRoute.value.fullPath
     tokenState.value = ''
     userInfoState.value = {}
     localStorage.clear()
-    router.push('/login')
+    router.push({ path: '/login', query: { redirect } })
   }
 
   return { userLogin, getUserInfoAction, userInfoState, hasUserInfo, logout }
